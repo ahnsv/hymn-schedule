@@ -1,8 +1,10 @@
 doctype html
 html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    block content
-    script(src="/javascripts/index.js")
+    head
+        title= title
+        link(rel='stylesheet', href='/stylesheets/style.css')
+    body
+        block content
+        script(src="/javascripts/index.js")
+        script(src="https://unpkg.com/dexie@latest/dist/dexie.js")
+        script(src="/javascripts/idb.js")
