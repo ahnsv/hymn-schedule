@@ -1,4 +1,3 @@
-
 if ('serviceWorker' in navigator) {
     // Use the window load event to keep the page load performant
     window.addEventListener('load', () => {
@@ -6,22 +5,20 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-const handleSubmit = (e) => {
+const handleSubmit = async (e) => {
     e.preventDefault();
-    return new Promise((resolve, reject) => {
-        let res = {};
-        for (const a of e.target) {
-            if (a.value && a.value !== 'submit') {
-                res[a.name] = a.value;
-            }
+    let res = {};
+    for (const a of e.target) {
+        if (a.value && a.value !== 'submit') {
+            res[a.name] = a.value;
         }
-        if (res.title) {
-            resolve(res)
-        }
-        else {
-            reject('non found')
-        }
-    })
+    }
+    if (res.title) {
+        await db.table('schedules').add(res);
+        return res;
+    } else {
+        return null;
+    }
 };
 
 
